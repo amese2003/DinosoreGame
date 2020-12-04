@@ -69,10 +69,40 @@ void DrawTree(int treeX) {
     printf(" ** ");
 }
 
+void DrawGameOver(const int score) {
+    system("cls");
+    int x = 18;
+    int y = 8;
+    GotoXY(x, y);
+
+    printf("===========================");
+    GotoXY(x, y + 1);
+    printf("=========GAME OVER=========");
+    GotoXY(x, y + 2);
+    printf("===========================");
+
+    GotoXY(x, y + 5);
+    printf("Score : %d", score);
+
+    printf("\n\n\n\n\n\n\n\n");
+    system("pause");
+}
+
+bool checkCollision(const int treeX, const int dinoY) {
+    GotoXY(0, 0);
+    printf("treeX : %d, dinoY: %d", treeX, dinoY);
+
+    if (treeX <= 8 && treeX >= 4 && dinoY > 8)
+        return true;
+
+    return false;
+}
+
 
 int main()
 {
     std::cout << "Hello World!\n";
+    SetConsoleView();
 
     bool isJumping = false;
     bool isBottom = true;
@@ -83,8 +113,14 @@ int main()
     int dinoY = DINO_BOTTOM_Y;
     int treeX = TREE_BOTTOM_X;
 
-    SetConsoleView();
+    int score = 0;
+    clock_t start, curr;
+    start = clock();
+
+    
     while (true) {
+        if (checkCollision(treeX, dinoY))
+            break;
 
         if (GetKeyDown() == 'z' && isBottom) {
             isJumping = true;
@@ -113,9 +149,20 @@ int main()
 
         DrawDino(dinoY);
         DrawTree(treeX);
-        Sleep(80);
+
+
+        curr = clock();
+        if (((curr - start) / CLOCKS_PER_SEC) >= 1) {
+            score++;
+            start = clock();
+        }
+
+        Sleep(60);
         system("cls");
+
+        GotoXY(22, 0);
+        printf("Score : %d ", score);
     }
 
-    system("pause");
+    DrawGameOver(score);
 }
