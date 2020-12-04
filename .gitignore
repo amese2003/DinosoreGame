@@ -30,3 +30,11 @@
 *.exe
 *.out
 *.app
+/Dinosore/.vs/Dinosore/v16/Browse.VC.opendb
+/Dinosore/.vs/Dinosore/v16/Browse.VC.db-wal
+/Dinosore/.vs/Dinosore/v16/Browse.VC.db-shm
+/Dinosore/.vs/Dinosore/v16/Browse.VC.db
+/Dinosore/Debug
+/Dinosore/.vs/Dinosore/v16/ipch/AutoPCH/d076165744f7879e
+/Dinosore/Dinosore/Debug
+/Dinosore/.vs/Dinosore/v16
